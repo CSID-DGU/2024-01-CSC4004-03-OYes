@@ -3,32 +3,6 @@ import time
 import pandas as pd
 
 
-
-# messages = [] 
-# predefined_messages = [] 
-
-# for msg in predefined_messages:
-#     messages.append({"role": "user", "content": msg})
-#     completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
-#     assistant_content = completion.choices[0].message["content"].strip()
-#     messages.append({"role": "assistant", "content": assistant_content})
-
-# while True:
-#     user_content = input("user : ")
-#     messages.append({"role": "user", "content": f"잘못된 발음을 옮긴 텍스트를 알려줄 거야 이걸 문맥에 맞게 고쳐줘, {user_content}"})
-#     # messages.append({"role": "user", "content": f"{user_content} + 를 문맥에 맞게 고쳐줘"})
-#     # messages.append({"role": "user", "content": f"{user_content} + 를 자연스럽게 수정해줘"})
-#     # 프롬프트 조금 더 자세히(입력이 길어지니까) 두 사람의 목소리 전부 다 교정할 것인지 등등 디테일(일단은 혼자만)
-
-#     completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
-
-#     assistant_content = completion.choices[0].message["content"].strip()
-
-#     messages.append({"role": "assistant", "content": f"{assistant_content}"})
-
-#     print(f"GPT : {assistant_content}")
-#     time.sleep(5)
-
 INITIAL_PROMPT = ('''
     당신은 오류가 있는 텍스트를 문맥에 맞게 바꾸어주는 친절한 AI 비서입니다.
 ''')
