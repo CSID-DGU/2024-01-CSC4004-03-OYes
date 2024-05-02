@@ -23,7 +23,7 @@ from source.infer.modules.vc.utils import *
 from scipy.io import wavfile
 
 
-class source:
+class VoiceChanger:
     def __init__(self, config, model_name):
         self.n_spk = None
         self.tgt_sr = None
@@ -39,7 +39,7 @@ class source:
 
         self.origin_voice_path = ""
 
-        self.model_name, self.file_index = source.select_model(model_name)
+        self.model_name, self.file_index = VoiceChanger.select_model(model_name)
         self.load_model(self.model_name)
 
     def load_voice(self, input_voice_path):
