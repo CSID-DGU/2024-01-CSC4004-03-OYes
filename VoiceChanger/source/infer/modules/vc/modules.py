@@ -34,19 +34,13 @@ class VoiceChanger:
         self.if_f0 = None
         self.version = None
         self.hubert_model = None
+        self.output_path = os.path.join(now_dir, "source", "assets", "inferenced_wav", "inferenced_output.wav")
+        self.file_counter = 1
 
         self.config = config
 
-        self.origin_voice_path = ""
-
-        self.model_name, self.file_index = VoiceChanger.select_model(model_name)
+        self.model_name, self.file_index = self.select_model(model_name)
         self.load_model(self.model_name)
-
-    def load_voice(self, input_voice_path):
-        
-        audio = load_audio(input_voice_path, 16000)
-
-        return audio
 
     def load_model(self, sid, *to_return_protect):
         logger.info("Get sid: " + sid)
@@ -175,7 +169,7 @@ class VoiceChanger:
         f0_up_key = int(f0_up_key)
         try:
             
-            audio = self.load_voice(input_voice_path)
+            audio = self.read_origin_voice(input_voice_path)
             audio_max = np.abs(audio).max() / 0.95
             if audio_max > 1:
                 audio /= audio_max
@@ -184,18 +178,20 @@ class VoiceChanger:
             if self.hubert_model is None:
                 self.hubert_model = load_hubert(self.config)
 
-            file_index = (
-                (
-                    file_index.strip(" ")
-                    .strip('"')
-                    .strip("\n")
-                    .strip('"')
-                    .strip(" ")
-                    .replace("trained", "added")
-                )
-                if file_index != ""
-                else self.file_index
-            )
+            #file_index = (
+            #    (
+            #        file_index.strip(" ")
+            #        .strip('"')
+            #        .strip("\n")
+            #        .strip('"')
+            #        .strip(" ")
+            #        .replace("trained", "added")
+            #    )
+            #    if file_index != ""
+            #    else self.file_index
+            #)
+
+            file_index = self.file_index
 
             audio_opt = self.pipeline.pipeline(
                 self.hubert_model,
@@ -227,9 +223,7 @@ class VoiceChanger:
                 else "Index not used."
             )
 
-            output_path = input_voice_path[0 : input_voice_path.find('inference_wav')] + 'inferenced_wav/inferenced_output.wav'
-
-            wavfile.write(output_path, tgt_sr, audio_opt)
+            self.write_changed_voice(tgt_sr, audio_opt)
             
             return (
                 "Success.\n%s\nTime:\nnpy: %.2fs, f0: %.2fs, infer: %.2fs."
@@ -241,7 +235,7 @@ class VoiceChanger:
             logger.warning(info)
             return info, (None, None)
         
-    def select_model(model_name):
+    def select_model(self, model_name):
     
         for index_name in os.listdir(os.path.join("source", "logs", model_name)):
 
@@ -254,4 +248,20 @@ class VoiceChanger:
         model_name += '.pth'
 
         return model_name, file_index
+    
+    def read_origin_voice(self, input_voice_path):
         
+        audio = load_audio(input_voice_path, 16000)
+
+        return audio
+    
+    def write_changed_voice(self, tgt_sr, audio_opt):
+
+        edited_path = self.output_path
+
+        if os.path.exists(self.output_path):
+            edited_path = self.output_path[0 : self.output_path.find(".wav")] + "(" + str(self.file_counter) + ")" + self.output_path[self.output_path.find(".wav") : ]
+            self.file_counter += 1
+
+
+        wavfile.write(edited_path, tgt_sr, audio_opt)
