@@ -4,7 +4,7 @@ soundfile>=0.12.1
 librosa==0.9.1
 torchcrepe==0.0.20
 av==10.0.0
-faiss
+faiss-cpu
 praat-parselmouth>=0.4.2
 pyworld==0.3.2
 fairseq @ git+https://github.com/One-sixth/fairseq.git
