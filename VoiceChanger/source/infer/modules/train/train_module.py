@@ -121,23 +121,7 @@ def if_done_multi(done, ps):
         if flag == 1:
             break
     done[0] = True
-'''
-sr = "40k" #sample rate / "40k" or "48k"
-if_f0 = True #pitch guiadence / True or False
-dataset_dir = now_dir + "\\assets\\dataset" #데이터셋이 있는 경로 = now_dir + "\\assets\\dataset"
-spk_id = 0 #0
-np_1 = int(np.ceil(config.n_cpu / 1.5)) #np7 = int(np.ceil(config.n_cpu / 1.5)); np7 <= config.n_cpu; np7++
-f0method = "rmvpe_gpu" #"pm", "harvest", "dio", "rmvpe", "rmvpe_gpu"
-batch_size = default_batch_size #batch size = default_batch_size
-if_save_latest = False #마지막 결과물만 저장하는지
-pretrained_G = "assets/pretrained_v2/f0G40k.pth" #pretrained model G path / "assets/pretrained_v2/f0G40k.pth"
-pretrained_D = "assets/pretrained_v2/f0D40k.pth" #pretrained model D path / "assets/pretrained_v2/f0D40k.pth"
-#gpus16 = gpus
-if_cache_gpu = False 
-if_save_every_weights = False 
-version = "v2" #trainin version / "v1" or "v2"
-gpus_rmvpe = "%s-%s" % (gpus, gpus) #gpus_rmvpe = "%s-%s" % (gpus, gpus)
-'''
+
 class TrainVoice:
 
     def __init__(self):
