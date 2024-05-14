@@ -5,7 +5,7 @@ class CorrectionBase(metaclass=ABCMeta):
     @abstractmethod
     def __init__(self, origin_script=None):
         self.__origin_script = origin_script
-        self.__corrected_scrip = None
+        self.__corrected_script = None
         self.__base_prompt = None
         self.__additional_prompt_list = None
         self.__api_key = None
@@ -27,7 +27,7 @@ class CorrectionBase(metaclass=ABCMeta):
 
     @property
     @abstractmethod
-    def corrected_scrip(self):
+    def corrected_script(self):
         pass
 
     @property
