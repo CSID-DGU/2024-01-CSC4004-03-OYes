@@ -26,6 +26,7 @@ body:
     attributes:
       label: 오류 로그
       description: 발생한 오류 로그를 그대로 여기에 붙여넣어주세요.
+      placeholder: 발생한 오류 로그를 그대로 여기에 붙여넣어주세요.
       render: shell
     validations:
       required: False
