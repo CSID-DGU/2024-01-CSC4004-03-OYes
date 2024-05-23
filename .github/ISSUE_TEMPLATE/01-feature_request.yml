@@ -32,9 +32,9 @@ body:
     validations:
       required: False
 
-    - type: markdown
-    attributes:
-      value: |
-        개발이 완료되면 Pull requests 후 팀장에게 리뷰 요청해주세요.
-        리뷰가 완료되면 직접 merge 하시면 됩니다. 단, merge 충돌 발생시 진행하지 말고 반드시 말씀해주세요.
+  - type: markdown
+  attributes:
+    value: |
+      개발이 완료되면 Pull requests 후 팀장에게 리뷰 요청해주세요.
+      리뷰가 완료되면 직접 merge 하시면 됩니다. 단, merge 충돌 발생시 진행하지 말고 반드시 말씀해주세요.
         
