@@ -1,4 +1,4 @@
-name: "[feat]: 기능 제안"
+name: "기능 제안"
 description: 새로운 기능을 추가하거나 기존의 기능을 수정할 때 사용하는 이슈 템플릿
 title: "[feat]: "
 labels: ["enhancement"]
@@ -11,15 +11,15 @@ body:
 
         하나의 이슈에 여러 기능을 추가하는 것보다, 이슈를 여러개 나눠 빠른 개발과 코드 업데이트가 이루어지도록 해주세요.
         
-        개발이 완료되면 Pull requests 후 팀장에게 리뷰 요청해주세요.
-        리뷰가 완료되면 직접 merge 하시면 됩니다. 단, merge 충돌 발생시 진행하지 말고 반드시 말씀해주세요.
-        
   - type: textarea
     id: details
     attributes:
       label: 개발 내용
       description: 추가하거나 수정할 기능을 설명해주세요
-      placeholder: 개조식으로, 줄표(-) 목록으로 작성해주세요
+      placeholder: 개조식으로 작성해주세요
+      value: |
+        - 내용 1(개조식으로 작성)
+        - 내용 2
     validations:
       required: true
 
@@ -28,7 +28,13 @@ body:
     attributes:
       label: 기타
       description: 기타 참고사항이 있으면 적어주세요
-      placeholder: 개조식으로, 줄표(-) 목록으로 작성해주세요
+      placeholder: 개조식으로 작성해주세요
     validations:
       required: False
-      
+
+    - type: markdown
+    attributes:
+      value: |
+        개발이 완료되면 Pull requests 후 팀장에게 리뷰 요청해주세요.
+        리뷰가 완료되면 직접 merge 하시면 됩니다. 단, merge 충돌 발생시 진행하지 말고 반드시 말씀해주세요.
+        
