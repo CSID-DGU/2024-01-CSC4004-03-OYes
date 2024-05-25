@@ -9,13 +9,15 @@ class ScriptGenerator(STTBase):
         self.__origin_voice_path = voice_path
         self.__origin_script = None
     
-    # 음성파일을 변환된 스크립트로 변환하는 메소드
+    # 음성파일을 변환된 스크립트로 변환 후 반환하는 메소드
     def execute(self):
         if self.__origin_voice_path is None:
             raise ValueError("음성 파일이 설정되지 않았습니다. 음성 파일을 다시 설정해주세요.")
 
         result = self.__model.transcribe(self.__origin_voice_path)
         self.__origin_script = result["text"]
+
+        return self.__origin_script
 
     # 음성파일 경로를 반환하는 메소드
     @property
