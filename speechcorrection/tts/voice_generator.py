@@ -42,6 +42,14 @@ class VoiceGenerator(TTSBase):
             raise RuntimeError(f"TTS생성이 정상적으로 이루어지지 않았습니다. 원인 : {err}")
 
     @property
+    def voice_type(self):
+        return self.__voice_type
+
+    @voice_type.setter
+    def voice_type(self, voice_type):
+        self.__voice_type = voice_type
+
+    @property
     def corrected_script(self):
         return self.__corrected_script
 
