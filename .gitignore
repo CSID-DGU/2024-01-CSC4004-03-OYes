@@ -1,6 +1,12 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,python,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,python,pycharm
 
+# google cloud platform
+auth_key.json
+
+# RVC
+Retrieval-based-Voice-Conversion-WebUI-main/
+
 ### macOS ###
 # General
 .DS_Store
