@@ -5,20 +5,18 @@ from speechcorrection.correction.correction_base import CorrectionBase
 
 class ScriptCorrection(CorrectionBase):
     def __init__(self, origin_script=None):
-        # self.__origin_script = origin_script
         self.__origin_script = origin_script
         self.__corrected_script = str()
-        self.__base_prompt = """너는 오류가 있는 문장을 문맥에 맞는 올바른 단어로 바꾸어 주는 친절한 비서야. 
-        잘못된 발음을 옮긴 텍스트를 알려줄 거야. 이걸 문맥에 맞게 정확하게 고쳐줘. 
-        밥을 짖다는 밥을 짓다를 잘못 발음할 것일 거라고 예측할 수 있어.
-        봉는다는 볶는다인 것처럼 어색한 발음들도 문맥에 맞게 고쳐주면 돼.
-        문장이 평상시에 쓰도록 말이 되어야 돼.
-        출력은 다른 말 붙이지 말고 반드시 교정된 텍스트만 나와야돼."""
+        self.__base_prompt = """나는 앞으로 부정확한 한국어 발음을 들리는 대로 받아 적은 텍스트를 입력할 건데, 하기된 조건을 지키면서 내가 입력한 한국어 텍스트를 문맥에 맞게 수정을 해.
+        조건 1. 맞춤법을 교정하고, 그 과정에서 단어의 원형을 알기 어려우면 가장 비슷한 단어를 선택하여 교정해. 단, 단어의 원형을 알 수 있거나 문장의 성분을 분석했을 때, 고유명사로 추정되는 경우에는 절대로 바꾸면 안 돼.
+        조건 2. 완성한 문장이 한국어 문법적으로, 의미 상으로 문제가 없어야 하고, 의미 상 왜곡을 최소화해야 해.
+        조건 3. 출력은 다른 말 붙이지 말고 반드시 교정된 텍스트만 나와야돼.
+        조건 4. 문장이 평상시에 쓰도록 말이 되어야 해."""
         self._additional_prompt_list = "문장이 평상시에 쓰도록 말이 되어야 돼."
         self.__api_key = None
+        # self.conversation_history = ""
 
     def execute(self):
-        # prompt = self.__base_prompt
         for user_input in self.__origin_script.split('\n'):
             self.__corrected_script = self.get_response(user_input)
         return self.__corrected_script
