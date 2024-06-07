@@ -48,6 +48,9 @@ async def speech_correction(model: str = Form(...), rvc_enabled: bool = Form(...
     global execution_log
     execution_log = str()
 
+    model_name = str(model.split("_")[0])
+    model_f0_up_key = int(model.split("_")[1])
+
     total_start_time = time.time()
     start_time = total_start_time
     path = await save_file(file.file)
@@ -90,7 +93,7 @@ async def speech_correction(model: str = Form(...), rvc_enabled: bool = Form(...
         start_time = time.time()
         changed_voice_file_name = 'changed_' + file_name_suffix + '.wav'
         changed_voice_path = os.path.join(ABS_WORK_DIR, changed_voice_file_name)
-        execute_voice_infer(basic_voice_path, changed_voice_path, model, 0.0, 12)
+        execute_voice_infer(basic_voice_path, changed_voice_path, model_name, 0.0, model_f0_up_key)
         end_time = time.time()
         elapsed_time = end_time - start_time
 
