@@ -133,18 +133,16 @@ const TryEn = () => {
             <div className="mb-3">
               <label htmlFor="model" className="form-label">Model</label>
               <select id="model" name="model" className="form-select" value={model} onChange={e => setModel(e.target.value)}>
-                <option value="ko-KR-Neural2-A">ko-KR-Neural2-A (female 1)</option>
-                <option value="ko-KR-Neural2-B">ko-KR-Neural2-B (female 2)</option>
-                <option value="ko-KR-Neural2-C">ko-KR-Neural2-C (male 1)</option>
-                <option value="ko-KR-Wavenet-A">ko-KR-Wavenet-A (female 3)</option>
-                <option value="ko-KR-Wavenet-B">ko-KR-Wavenet-B (female 4)</option>
-                <option value="ko-KR-Wavenet-C">ko-KR-Wavenet-C (male 2)</option>
-                <option value="ko-KR-Wavenet-D">ko-KR-Wavenet-D (male 3)</option>
+                <option value="haehwan_0">haehwan_0</option>
+                <option value="hong_12">hong_12</option>
+                <option value="hyeonmoo_0">hyeonmoo_0</option>
+                <option value="IU_12">IU_12</option>
+                <option value="jang_0">jang_0</option>
+                <option value="sanghyeon_0">sanghyeon_0</option>
+                <option value="taeyoung_0">taeyoung_0</option>
+                <option value="yonghee_0">yonghee_0</option>
+                <option value="yoonyoung_12">yoonyoung_12</option>
               </select>
-            </div>
-
-            <div className="mb-3">
-              <p>For accurate results, please choose the model that matches your gender.</p>
             </div>
 
             <div className="d-flex justify-content-start align-items-center mb-3">

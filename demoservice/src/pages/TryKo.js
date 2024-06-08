@@ -139,18 +139,16 @@ const TryKo = () => {
             <div className="mb-3">
               <label htmlFor="model" className="form-label">모델</label>
               <select id="model" name="model" className="form-select" value={model} onChange={e => setModel(e.target.value)}>
-                <option value="ko-KR-Neural2-A">ko-KR-Neural2-A (여성1)</option>
-                <option value="ko-KR-Neural2-B">ko-KR-Neural2-B (여성2)</option>
-                <option value="ko-KR-Neural2-C">ko-KR-Neural2-C (남성1)</option>
-                <option value="ko-KR-Wavenet-A">ko-KR-Wavenet-A (여성3)</option>
-                <option value="ko-KR-Wavenet-B">ko-KR-Wavenet-B (여성4)</option>
-                <option value="ko-KR-Wavenet-C">ko-KR-Wavenet-C (남성2)</option>
-                <option value="ko-KR-Wavenet-D">ko-KR-Wavenet-D (남성3)</option>
+                <option value="haehwan_0">haehwan_0</option>
+                <option value="hong_12">hong_12</option>
+                <option value="hyeonmoo_0">hyeonmoo_0</option>
+                <option value="IU_12">IU_12</option>
+                <option value="jang_0">jang_0</option>
+                <option value="sanghyeon_0">sanghyeon_0</option>
+                <option value="taeyoung_0">taeyoung_0</option>
+                <option value="yonghee_0">yonghee_0</option>
+                <option value="yoonyoung_12">yoonyoung_12</option>
               </select>
-            </div>
-
-            <div className="mb-3">
-              <p>정확한 결과를 위해서 <b>자신의 성별에 맞는 모델</b>을 선택해 주세요</p>
             </div>
 
             <div className="d-flex justify-content-start align-items-center mb-3">
