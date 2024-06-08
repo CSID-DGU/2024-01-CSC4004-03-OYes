@@ -10,7 +10,7 @@ const TryEn = () => {
   const [logs, setLogs] = useState([]);
   const [responseUrl, setResponseUrl] = useState("");
   const [responseLog, setResponseLog] = useState("");
-  const [model, setModel] = useState("ko-KR-Neural2-A");
+  const [model, setModel] = useState("haehwan_0");
   const mediaRecorderRef = useRef([]);
   const audioRef = useRef([]);
 
