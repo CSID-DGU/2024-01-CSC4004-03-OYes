@@ -163,7 +163,7 @@ const TryEn = () => {
             </div>
 
             <div className="mb-3">
-              <p>RVC - {rvcEnabled ? 'on: Corrects to sound similar to the user\'s voice.' : 'off: Corrects to TTS voice.'}</p>
+              <p>RVC - {rvcEnabled ? 'on: Corrects to sound similar to the selected RVC model\'s voice.' : 'off: Corrects to TTS voice.'}</p>
               <p>show log - {logDisplay ? 'on: Shows logs.' : 'off: Does not show logs.'}</p>
             </div>
 

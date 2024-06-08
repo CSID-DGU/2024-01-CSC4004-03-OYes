@@ -169,7 +169,7 @@ const TryKo = () => {
             </div>
 
             <div className="mb-3">
-              <p>RVC - {rvcEnabled ? 'on : 사용자의 목소리와 비슷하게 교정합니다.' : 'off : TTS의 음성으로 교정합니다.'}</p>
+              <p>RVC - {rvcEnabled ? 'on : 선택한 RVC 목소리와 비슷하게 교정합니다.' : 'off : TTS의 음성으로 교정합니다.'}</p>
               <p>로그 보기 - {logDisplay ? 'on : 로그를 표시합니다.' : 'off : 로그를 표시하지 않습니다.'}</p>
             </div>
 
