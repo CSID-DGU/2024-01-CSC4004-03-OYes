@@ -119,7 +119,7 @@ async def speech_correction(model: str = Form(...), rvc_enabled: str = Form(...)
     # Voice 모듈 동작
     if rvc_enabled_bool:
         start_time = time.time()
-        changed_voice_file_name = 'changed_' + file_name_suffix + '.wav'
+        changed_voice_file_name = f"changed_{file_name_suffix}.wav"
         changed_voice_path = os.path.join(ABS_WORK_DIR, changed_voice_file_name)
         execute_voice_infer(basic_voice_path, changed_voice_path, model_name, 0.0, model_f0_up_key)
         end_time = time.time()
@@ -193,7 +193,7 @@ async def text_to_speech(corrected_script: str = Form(...)):
     global execution_log
     start_time = time.time()
     file_name_suffix = datetime.datetime.now().strftime('%y%m%d_%H%M%S_%f')
-    basic_voice_file_name = 'basic_' + file_name_suffix + '.wav'
+    basic_voice_file_name = f"tts_{file_name_suffix}.wav"
     basic_voice_path = os.path.join(ABS_WORK_DIR, basic_voice_file_name)
     execute_tts(corrected_script, basic_voice_path)
     end_time = time.time()
@@ -205,7 +205,7 @@ async def text_to_speech(corrected_script: str = Form(...)):
     execution_log = current_log
     print(current_log)
 
-    return FileResponse(basic_voice_path, filename=f"tts_{file_name_suffix}.wav", media_type="audio/wav")
+    return FileResponse(basic_voice_path, filename=basic_voice_file_name, media_type="audio/wav")
 
 
 @app.post("/voice-change")
@@ -216,8 +216,8 @@ async def voice_infer(model: str = Form(...), file: UploadFile = File(...)):
 
     global execution_log
     start_time = time.time()
-    file_name_suffix = datetime.datetime.now().strftime('%y%m%d_%H%M%S%f')
-    changed_voice_file_name = 'changed_' + file_name_suffix + '.wav'
+    file_name_suffix = datetime.datetime.now().strftime('%y%m%d_%H%M%S_%f')
+    changed_voice_file_name = f"infer_{model_name}_{file_name_suffix}.wav"
     changed_voice_path = os.path.join(ABS_WORK_DIR, changed_voice_file_name)
     execute_voice_infer(basic_voice_path, changed_voice_path, model_name, 0.0, model_f0_up_key)
     end_time = time.time()
@@ -234,8 +234,7 @@ async def voice_infer(model: str = Form(...), file: UploadFile = File(...)):
     if os.path.isfile(basic_voice_path):
         os.remove(basic_voice_path)
 
-    return FileResponse(changed_voice_path, filename=f"infer_{model_name}_{file_name_suffix}.wav",
-                        media_type="audio/wav")
+    return FileResponse(changed_voice_path, filename=changed_voice_file_name, media_type="audio/wav")
 
 
 @app.get("/log")
