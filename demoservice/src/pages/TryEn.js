@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const TryKo = () => {
+const TryEn = () => {
   const [logDisplay, setLogDisplay] = useState(false);
   const [rvcEnabled, setRvcEnabled] = useState(false);
   const [recording, setRecording] = useState(false);
@@ -23,6 +23,15 @@ const TryKo = () => {
       setLogs((prevLogs) => [...prevLogs, responseLog]);
     }
   }, [responseUrl, responseLog]);
+
+  const formatLog = (log) => {
+    return log.split('\n').map((line, index) => (
+        <span key={index}>
+            {line}
+            <br />
+        </span>
+    ));
+  };
 
   const toggleLogDisplay = () => {
     setLogDisplay(!logDisplay);
@@ -44,19 +53,19 @@ const TryKo = () => {
         const blob = event.data;
         await handleSubmit(blob);
 
-        setLogs((prevLogs) => [...prevLogs, "음성 파일 저장 성공!"]);
+        setLogs((prevLogs) => [...prevLogs, "Audio file saved successfully!"]);
       };
 
       mediaRecorderRef.current = mediaRecorder;
       mediaRecorder.start();
       setRecording(true);
-      setLogs((prevLogs) => [...prevLogs, "녹음을 시작합니다."]);
+      setLogs((prevLogs) => [...prevLogs, "Recording started."]);
     }
   };
 
   const handleSubmit = async (blob) => {
     if (!blob) {
-      setLogs((prevLogs) => [...prevLogs, "녹음된 파일이 없습니다."]);
+      setLogs((prevLogs) => [...prevLogs, "No recorded file available."]);
       return;
     }
 
@@ -67,16 +76,12 @@ const TryKo = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      console.log(apiUrl);
       const response = await axios.post(`${apiUrl}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
         responseType: 'blob',
       });
-
-      setLogs((prevLogs) => [...prevLogs, "파일 전송 성공!"]);
-      
       if (response.status === 200) {
         const newResponseUrl = URL.createObjectURL(response.data);
         setResponseUrl(newResponseUrl);
@@ -85,12 +90,10 @@ const TryKo = () => {
       else {
         throw new Error("Invalid response status: " + response.status);
       }      
-    } 
-    catch (error) {
-      setLogs((prevLogs) => [...prevLogs, "파일 전송 실패: " + error.message]);
+    } catch (error) {
+      setLogs((prevLogs) => [...prevLogs, "File upload failed: " + error.message]);
     }
   };
-
 
   const fetchLogs = async () => {
     try {
@@ -111,10 +114,10 @@ const TryKo = () => {
         {logDisplay && (
           <div className={`card shadow-sm w-25 transition-width`} style={{ height: logDisplay ? '100%' : '0', maxHeight: logDisplay ? 'calc(100vh - 150px)' : '0', overflow: 'hidden' }}>
             <div className="card-body">
-              <h5 className="card-title">로그</h5>
+              <h5 className="card-title">Logs</h5>
               <div className="border rounded p-2" style={{ height: 'calc(100vh - 200px)', overflowY: 'auto' }}>
                 {logs.map((log, index) => (
-                  <p key={index}>{log}</p>
+                  <p key={index}>{formatLog(log)}</p>
                 ))}
               </div>
             </div>
@@ -128,20 +131,20 @@ const TryKo = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="model" className="form-label">모델</label>
+              <label htmlFor="model" className="form-label">Model</label>
               <select id="model" name="model" className="form-select" value={model} onChange={e => setModel(e.target.value)}>
-                <option value="ko-KR-Neural2-A">ko-KR-Neural2-A (여성1)</option>
-                <option value="ko-KR-Neural2-B">ko-KR-Neural2-B (여성2)</option>
-                <option value="ko-KR-Neural2-C">ko-KR-Neural2-C (남성1)</option>
-                <option value="ko-KR-Wavenet-A">ko-KR-Wavenet-A (여성3)</option>
-                <option value="ko-KR-Wavenet-B">ko-KR-Wavenet-B (여성4)</option>
-                <option value="ko-KR-Wavenet-C">ko-KR-Wavenet-C (남성2)</option>
-                <option value="ko-KR-Wavenet-D">ko-KR-Wavenet-D (남성3)</option>
+                <option value="ko-KR-Neural2-A">ko-KR-Neural2-A (female 1)</option>
+                <option value="ko-KR-Neural2-B">ko-KR-Neural2-B (female 2)</option>
+                <option value="ko-KR-Neural2-C">ko-KR-Neural2-C (male 1)</option>
+                <option value="ko-KR-Wavenet-A">ko-KR-Wavenet-A (female 3)</option>
+                <option value="ko-KR-Wavenet-B">ko-KR-Wavenet-B (female 4)</option>
+                <option value="ko-KR-Wavenet-C">ko-KR-Wavenet-C (male 2)</option>
+                <option value="ko-KR-Wavenet-D">ko-KR-Wavenet-D (male 3)</option>
               </select>
             </div>
 
             <div className="mb-3">
-              <p>정확한 결과를 위해서 <b>자신의 성별에 맞는 모델</b>을 선택해 주세요</p>
+              <p>For accurate results, please choose the model that matches your gender.</p>
             </div>
 
             <div className="d-flex justify-content-start align-items-center mb-3">
@@ -153,7 +156,7 @@ const TryKo = () => {
                 </label>
               </div>
               <div className="d-flex align-items-center">
-                <label htmlFor="logDisplay" className="form-check-label me-2">로그 보기</label>
+                <label htmlFor="logDisplay" className="form-check-label me-2">show log</label>
                 <label className="switch">
                   <input id="logDisplay" name="logDisplay" type="checkbox" onChange={toggleLogDisplay} />
                   <span className="slider round"></span>
@@ -162,12 +165,12 @@ const TryKo = () => {
             </div>
 
             <div className="mb-3">
-              <p>RVC - {rvcEnabled ? 'on : 사용자의 목소리와 비슷하게 교정합니다.' : 'off : TTS의 음성으로 교정합니다.'}</p>
-              <p>로그 보기 - {logDisplay ? 'on : 로그를 표시합니다.' : 'off : 로그를 표시하지 않습니다.'}</p>
+              <p>RVC - {rvcEnabled ? 'on: Corrects to sound similar to the user\'s voice.' : 'off: Corrects to TTS voice.'}</p>
+              <p>show log - {logDisplay ? 'on: Shows logs.' : 'off: Does not show logs.'}</p>
             </div>
 
             <button className="btn btn-primary mt-auto" onClick={handleRecord} style={{ backgroundColor: recording ? '#FF7C80' : '#4E95D9', height: '50px' }}>
-              {recording ? '녹음 종료 후 저장 💾' : '녹음 시작 🎙️'}
+              {recording ? 'end recording and save 💾' : 'start recording 🎙️'}
             </button>
           </div>
         </div>
@@ -176,4 +179,4 @@ const TryKo = () => {
   );
 };
 
-export default TryKo;
+export default TryEn;
