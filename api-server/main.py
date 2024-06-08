@@ -3,10 +3,11 @@ import os
 import subprocess
 import sys
 import time
-from fastapi import FastAPI, File, UploadFile, Form
-from fastapi.responses import FileResponse
 from tempfile import NamedTemporaryFile
 from typing import IO
+
+from fastapi import FastAPI, File, UploadFile, Form
+from fastapi.responses import FileResponse
 
 app = FastAPI()
 
@@ -43,13 +44,21 @@ async def save_file(file: IO):
 
 
 @app.post("/speech-correction")
-async def speech_correction(model: str = Form(...), rvc_enabled: bool = Form(...), file: UploadFile = File(...)):
+async def speech_correction(model: str = Form(...), rvc_enabled: str = Form(...), file: UploadFile = File(...)):
     global execution_log
     execution_log = str()
 
+    # RVC 활성화 여부 체크
+    if rvc_enabled == "true":
+        rvc_enabled_bool = bool(True)
+    else:
+        rvc_enabled_bool = bool(False)
+
+    # 모델 이름 및 f0_up_key 정보 체크
     model_name = str(model.split("_")[0])
     model_f0_up_key = int(model.split("_")[1])
 
+    # STT 모듈 동작
     total_start_time = time.time()
     start_time = total_start_time
     path = await save_file(file.file)
@@ -63,6 +72,7 @@ async def speech_correction(model: str = Form(...), rvc_enabled: bool = Form(...
     execution_log += current_log
     print(current_log)
 
+    # Correction 모듈 동작
     start_time = time.time()
     corrected_script = execute_correction(origin_script)
     end_time = time.time()
@@ -74,6 +84,7 @@ async def speech_correction(model: str = Form(...), rvc_enabled: bool = Form(...
     execution_log += current_log
     print(current_log)
 
+    # TTS 모듈 동작
     start_time = time.time()
     file_name_suffix = datetime.datetime.now().strftime('%y%m%d_%H%M%S_%f')
     basic_voice_file_name = 'basic_' + file_name_suffix + '.wav'
@@ -88,7 +99,8 @@ async def speech_correction(model: str = Form(...), rvc_enabled: bool = Form(...
     execution_log += current_log
     print(current_log)
 
-    if rvc_enabled:
+    # Voice 모듈 동작
+    if rvc_enabled_bool:
         start_time = time.time()
         changed_voice_file_name = 'changed_' + file_name_suffix + '.wav'
         changed_voice_path = os.path.join(ABS_WORK_DIR, changed_voice_file_name)
