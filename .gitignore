@@ -7,6 +7,9 @@ auth_key.json
 # RVC
 Retrieval-based-Voice-Conversion-WebUI-main/
 
+# Work dir
+temp-voice/
+
 ### macOS ###
 # General
 .DS_Store
