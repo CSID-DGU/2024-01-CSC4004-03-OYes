@@ -13,7 +13,7 @@ from fastapi.responses import FileResponse
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",  # React 앱이 실행되는 도메인
+    "*",  # React 앱이 실행되는 도메인
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -119,7 +119,7 @@ async def speech_correction(model: str = Form(...), rvc_enabled: str = Form(...)
     # Voice 모듈 동작
     if rvc_enabled_bool:
         start_time = time.time()
-        changed_voice_file_name = f"changed_{file_name_suffix}.wav"
+        changed_voice_file_name = f"changed_{model_name}_{file_name_suffix}.wav"
         changed_voice_path = os.path.join(ABS_WORK_DIR, changed_voice_file_name)
         execute_voice_infer(basic_voice_path, changed_voice_path, model_name, 0.0, model_f0_up_key)
         end_time = time.time()
@@ -240,7 +240,7 @@ async def voice_infer(model: str = Form(...), file: UploadFile = File(...)):
 @app.get("/log")
 async def get_log():
     print(execution_log)
-    return execution_log.replace('\n', '<br>')
+    return execution_log.replace('\n', '\n')
 
 
 def execute_stt(origin_voice_path):
