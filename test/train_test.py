@@ -14,6 +14,7 @@ origin_path = os.getcwd()
 os.chdir(rvc_path)
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from speechcorrection import train
