@@ -24,7 +24,7 @@ TTS 변환할 문자열을 입력 (inputType: string, return: None)
 VoiceGenerator.get_basic_voice()
 ```
 
-입력받은 문자열을 이용하여 TTS 음성파일을 생성하고 파일의 절대주소를 반환 (inputType: None, return: string), 
+입력받은 문자열을 이용하여 TTS 음성파일을 생성하고 파일의 절대주소를 반환 (inputType: None, return: string),
 문자열을 입력 받은 적이 없거나 빈 문자열이면 프로그램 종료(abort)
 
 ### 4. 출처 및 라이센스 정보

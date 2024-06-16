@@ -4,11 +4,11 @@ import whisper
 
 class ScriptGenerator(STTBase):
     # 처음 초기화할 때 사용할 모델명, 음성 파일의 경로를 매개변수로 받음
-    def __init__(self, model_name = "small", voice_path=None):
+    def __init__(self, model_name="small", voice_path=None):
         self.__model = whisper.load_model(model_name)
         self.__origin_voice_path = voice_path
         self.__origin_script = None
-    
+
     # 음성파일을 변환된 스크립트로 변환 후 반환하는 메소드
     def execute(self):
         if self.__origin_voice_path is None:

@@ -1,9 +1,9 @@
 import numpy as np
 from scipy.io import wavfile
 
-#카이스트 오디오 북 wav 파일을 1분 분량으로 합지기 위한 source code
+# 카이스트 오디오 북 wav 파일을 1분 분량으로 합지기 위한 source code
 
-#파일 개수 입력
+# 파일 개수 입력
 audio_file_cnt = 18
 
 wav_files = []
