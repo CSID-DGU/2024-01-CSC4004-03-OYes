@@ -7,9 +7,9 @@ const AboutKo = () => {
         <div className="container my-5">
             <div className="card">
                 <div className="card-body">
-                    <h1 className="card-title mb-4">Speech Correction with RVC</h1>
+                    <h1 className="card-title mb-4">Speech Correction with GPT and RVC</h1>
                     <p className="card-text mb-4">
-                        Speech Correction with RVC는 생성형 AI와, 화자의 음성의 학습하여 이를 바탕으로 음성을 변환하는 RVC(Retrieval-based Voice
+                        Speech Correction with GPT and RVC는 생성형 AI와, 화자의 음성의 학습하여 이를 바탕으로 음성을 변환하는 RVC(Retrieval-based Voice
                         Conversion) 기술을 이용하여 한국어 음성에서 의미 전달을 방해하는 요소를 수정하고, 청자가 이질감을 느끼지 않도록 화자의 원래 목소리와 똑같은 교정된 음성을
                         제공하는 모델입니다.
                     </p>

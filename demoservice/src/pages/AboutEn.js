@@ -7,9 +7,9 @@ const AboutEn = () => {
         <div className="container my-5">
             <div className="card">
                 <div className="card-body">
-                    <h1 className="card-title mb-4">Speech Correction with RVC</h1>
+                    <h1 className="card-title mb-4">Speech Correction with GPT and RVC</h1>
                     <p className="card-text mb-4">
-                        Speech Correction with RVC uses generative AI and the study of the speaker's own voice to
+                        Speech Correction with GPT and RVC uses generative AI and the study of the speaker's own voice to
                         transform speech using RVC (Retrieval-based Voice Conversion) technology. This model corrects
                         elements in Korean speech that hinder the transmission of meaning and provides a corrected voice
                         identical to the speaker's original voice, ensuring that listeners do not feel any discomfort.

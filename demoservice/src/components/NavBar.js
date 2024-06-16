@@ -20,7 +20,7 @@ const NavBar = ({lang, setLang}) => {
     return (
         <nav className="navbar navbar-expand navbar-light bg-white shadow-sm">
             <div className="container-fluid">
-                <Link to={`/try/${lang}`} className="navbar-brand font-weight-bold">Speech Correction with RVC</Link>
+                <Link to={`/try/${lang}`} className="navbar-brand font-weight-bold">Speech Correction with GPT and RVC</Link>
                 <div className="navbar-nav">
                     <Link to={`/try/${lang}`} className="nav-link text-gray-700 me-4">Try</Link>
                     <Link to={`/about/${lang}`} className="nav-link text-gray-700 me-4">About</Link>
