@@ -175,6 +175,11 @@ rmvpe_root = assets/rmvpe
 
 [google-cloud-python](https://github.com/googleapis/google-cloud-python) / Apache-2.0 license / googleapis
 
-[Retrieval-based-Voice-Conversion-WebUI](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI) / MIT
-License / Copyright (c) 2023 liujing04 / Copyright (c) 2023 源文雨 / Copyright (c) 2023 Ftps
+[Retrieval-based-Voice-Conversion-WebUI](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI) / MIT License / Copyright (c) 2023 liujing04 / Copyright (c) 2023 源文雨 / Copyright (c) 2023 Ftps
+
+[FastAPI](https://github.com/tiangolo/fastapi) / MIT License / Copyright (c) 2018 Sebastián Ramírez
+
+[react](https://github.com/facebook/react) / MIT License / Copyright (c) Meta Platforms, Inc. and affiliates.
+
+[bootstrap](https://github.com/twbs/bootstrap) / MIT License / Copyright (c) 2011-2024 The Bootstrap Authors
 
